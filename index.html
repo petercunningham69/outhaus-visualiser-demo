@@ -410,11 +410,29 @@ select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .rail.blending .prod .pct { position: absolute; top: 12px; right: 12px; min-width: 0; padding: 1px 6px; border-radius: 3px; background: rgba(20,22,24,.78); color: #f2f2ef; }
   .rail.blending .prod[aria-pressed="true"] .pct { color: #f2f2ef; background: var(--accent); color: var(--accent-ink); }
 }
+
+/* ── Clay & Co. branding: charcoal logo on light, white logo on dark ── */
+header.top, .lib-top { align-items: center; }
+.brand { display: flex; align-items: center; gap: 20px; min-width: 0; }
+.brand .logo { height: 50px; width: auto; display: block; flex: none; }
+.brand > h1, .brand > div { padding-left: 20px; border-left: 1px solid var(--line); }
+.brand .on-dark { display: none; }
+:root[data-theme="dark"] .brand .on-light { display: none; }
+:root[data-theme="dark"] .brand .on-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .brand .on-light { display: none; }
+  :root:not([data-theme="light"]) .brand .on-dark { display: block; }
+}
+@media (max-width: 640px) {
+  .brand { gap: 14px; }
+  .brand .logo { height: 36px; }
+  .brand > h1, .brand > div { padding-left: 14px; }
+}
 </style>
 
 <div class="app">
   <header class="top">
-    <h1>Product Visualiser - Brick</h1>
+    <div class="brand"><img class="logo on-light" src="brand/clayandco-light.png" alt="Clay &amp; Co." width="420" height="163"><img class="logo on-dark" src="brand/clayandco-dark.png" alt="Clay &amp; Co." width="420" height="163"><h1>Product Visualiser - Brick</h1></div>
     <div class="topright">
       <button type="button" class="colbtn" id="colBtn" aria-haspopup="dialog">My collection <b id="colCount">0</b></button>
       <div class="theme" role="group" aria-label="Colour theme"><button type="button" id="thLight" aria-pressed="false">Light</button><button type="button" id="thDark" aria-pressed="false">Dark</button></div>
@@ -565,7 +583,7 @@ select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 <section class="library" id="library" aria-labelledby="libTitle" hidden>
   <header class="lib-top">
-    <div><h1 id="libTitle" tabindex="-1">Brick library</h1><p class="note">Choose a brick to see it in the Product Visualiser.</p></div>
+    <div class="brand"><img class="logo on-light" src="brand/clayandco-light.png" alt="Clay &amp; Co." width="420" height="163"><img class="logo on-dark" src="brand/clayandco-dark.png" alt="Clay &amp; Co." width="420" height="163"><div><h1 id="libTitle" tabindex="-1">Brick library</h1><p class="note">Choose a brick to see it in the Product Visualiser.</p></div></div>
     <div class="lib-acts"><button type="button" class="btn ghost" id="libBack">Back to visualiser</button><div class="theme" role="group" aria-label="Colour theme"><button type="button" id="libLight" aria-pressed="false">Light</button><button type="button" id="libDark" aria-pressed="false">Dark</button></div></div>
   </header>
   <div class="lib-bar">
